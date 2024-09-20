@@ -1,12 +1,16 @@
-<div class="carousel-container">
-  <h2 class="carousel-title">{{carousel_title}}</h2>
-  <div class="carousel">
-    {{#foreach carousel_items}}
-    <div class="carousel-item">
-      {{> "post-card"}}
+<section class="featured-posts">
+    <h2 class="featured-posts-title">{{carousel_title}}</h2>
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel">
+                {{#foreach carousel_items}}
+                <div class="carousel-item">
+                    {{> "post-card"}}
+                </div>
+                {{/foreach}}
+            </div>
+        </div>
+        <button class="carousel-button prev" aria-label="Previous slide">&lt;</button>
+        <button class="carousel-button next" aria-label="Next slide">&gt;</button>
     </div>
-    {{/foreach}}
-  </div>
-  <button class="carousel-button prev">&lt;</button>
-  <button class="carousel-button next">&gt;</button>
-</div>
+</section>

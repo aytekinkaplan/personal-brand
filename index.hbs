@@ -2,5 +2,7 @@
 
 {{> "carousel"
   carousel_title="Featured Posts"
-  carousel_items=(get "posts" limit="3" order="created_at desc")
+  carousel_items=(get "posts" filter="featured:true" limit="6" include="tags" as="posts")
 }}
+
+{{! Rest of your index.hbs content }}
