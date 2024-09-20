@@ -1,0 +1,111 @@
+/* Genel Makale Stili */
+.gh-article {
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Başlık Kısmı Stilleri */
+.gh-header {
+  margin-bottom: 20px;
+}
+
+.gh-post-meta {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.gh-title {
+  margin-top: 5px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.gh-excerpt {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Resimler İçin Stiller */
+.gh-feature-image {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.gh-feature-image img {
+  width: 100%;
+  height: auto;
+}
+
+.gh-feature-image figcaption {
+  font-size: 0.85rem;
+  text-align: center;
+  color: #777;
+}
+
+/* İçerik Stilleri */
+.gh-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Yazar ve Navigasyon Stilleri */
+.gh-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.gh-post-authors a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+/* Okunmaya devam et kısmı stilleri */
+.gh-readmore {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.gh-readmore-inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.gh-readmore-next a,
+.gh-readmore-prev a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+.gh-readmore-next h4,
+.gh-readmore-prev h4 {
+  margin: 0;
+}
+
+/* İkonlar için genel stil */
+.icons {
+  fill: #0077cc; /* İkon rengi */
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .gh-article {
+    padding: 10px;
+  }
+
+  .gh-readmore-inner {
+    flex-direction: column;
+  }
+
+  .gh-readmore-next,
+  .gh-readmore-prev {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
