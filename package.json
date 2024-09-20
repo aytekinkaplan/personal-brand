@@ -1,5 +1,29 @@
 {
   "name": "personal-website",
   "version": "1.0.0",
-  "description": "📦 ⚡⚡⚡ Wagmi ⚡⚡⚡"
+  "description": "📦 ⚡⚡⚡ Aytekin kaplan ⚡⚡⚡",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "author": {
+    "name": "aytekin kaplan",
+    "email": "ytknkpln@gmail.com"
+  },
+  "keywords": [
+    "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 5
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "gulp",
+    "zip": "gulp zip",
+    "test": "gscan ."
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.1.0",
+    "gscan": "^4.34.0"
+  }
 }

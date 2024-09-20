@@ -1,5 +1,43 @@
-<footer>
-  <div class="gh-footer">
-    <div class="gh-footer__inner">
-      <div class="gh-footer__column gh-footer__column--left">
+<footer class="gh-footer">
+  <div class="gh-container">
+    <div class="gh-footer-content">
+      <div class="gh-footer-brand">
+        <a class="gh-footer-logo" href="{{@site.url}}">
+          {{#if @site.logo}}
+            <img src="{{@site.logo}}" alt="{{@site.title}}" />
+          {{else}}
+            {{@site.title}}
+          {{/if}}
+        </a>
+      </div>
+      
+      <div class="gh-footer-social-links">
+        {{#if @site.twitter}}
+          <a class="gh-social-link" href="{{@site.twitter}}" target="_blank" rel="noopener noreferrer" aria-label="Twitter">{{> icons/twitter}}</a>
+        {{/if}}
+        {{#if @site.facebook}}
+          <a class="gh-social-link" href="{{@site.facebook}}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">{{> icons/facebook}}</a>
+        {{/if}}
+        {{#if @site.instagram}}
+          <a class="gh-social-link" href="{{@site.instagram}}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">{{> icons/instagram}}</a>
+        {{/if}}
+      </div>
+      
+      <nav class="gh-footer-menu">
+        {{navigation type="secondary"}}
+      </nav>
+      
+      {{#if @site.members_enabled}}
+        <div class="gh-footer-subscribe">
+          <h3>Subscribe to {{@site.title}}</h3>
+          <p>Get the latest posts delivered right to your inbox.</p>
+          <a class="gh-btn" href="{{@site.url}}/subscribe/">Subscribe</a>
+        </div>
+      {{/if}}
+      
+      <div class="gh-footer-copyright">
+        &copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.
+      </div>
+    </div>
+  </div>
 </footer>
