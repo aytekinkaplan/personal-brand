@@ -1,12 +1,46 @@
 .carousel {
   display: flex;
-  overflow-x: scroll;
+  overflow: hidden;
+  position: relative;
   gap: 10px;
 }
 
 .carousel-item {
-  min-width: 200px;
-  border: 1px solid #ccc;
+  min-width: 200px; /* Genişliği dinamik hale getirmek için */
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
   padding: 10px;
-  background: #fff;
+  cursor: pointer;
+  z-index: 10; /* Navigasyon butonlarının üstte görünmesini sağlar */
+}
+
+.carousel-prev {
+  left: 10px; /* Sayfadan hafifçe içeri alındı */
+}
+
+.carousel-next {
+  right: 10px; /* Sayfadan hafifçe içeri alındı */
+}
+
+.carousel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Resimlerin düzgün kesilmesini sağlar */
 }

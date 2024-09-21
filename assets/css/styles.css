@@ -2,12 +2,16 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f5f5f5; /* Arka plana hafif bir gri ton ekleyelim */
 }
 
 .site-header {
   background-color: #333;
   color: #fff;
-  padding: 10px;
+  padding: 15px 20px; /* Yatay ve dikey padding arttırıldı */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .site-footer {
@@ -15,4 +19,62 @@ body {
   color: #fff;
   padding: 20px;
   text-align: center;
+  margin-top: 20px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px; /* Sayfada genişlik sınırı */
+  margin: 0 auto; /* Ortalanması için */
+}
+
+.post-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  cursor: pointer; /* Fare simgesi */
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Hover efektinde büyütme */
+}
+
+.post-card img {
+  max-width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd; /* Alt kısımda bir sınır */
+  margin-bottom: 10px;
+}
+
+.post-card h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.post-card p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    min-width: 150px; /* Küçük ekranlar için genişlik */
+  }
+
+  .site-header,
+  .site-footer {
+    text-align: center;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    top: 45%; /* Küçük ekranlar için butonların konumunu değiştir */
+  }
 }

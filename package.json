@@ -1,89 +1,91 @@
 {
-  "name": "ghost-starter-theme",
-  "description": "A starter theme for Ghost theme development",
-  "demo": "https://starter.ghost.io",
+  "name": "my-ghost-theme",
+  "description": "A custom Ghost theme developed by Sameer Memon",
+  "demo": "https://myghosttheme.demo", 
   "version": "1.0.0",
   "engines": {
-    "ghost": ">=5.0.0"
+      "ghost": ">=5.0.0"
   },
   "license": "MIT",
   "screenshots": {
-    "desktop": "assets/screenshot-desktop.jpg"
+      "desktop": "assets/screenshot-desktop.jpg"  // Tema için bir ekran görüntüsü ekleyin
   },
   "scripts": {
-    "dev": "rollup -c --environment BUILD:development -w",
-    "build": "rollup -c --environment BUILD:production",
-    "zip": "npm run build && bestzip $npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
-    "test": "npx gscan .",
-    "pretest": "npm run build"
+      "dev": "rollup -c --environment BUILD:development -w",
+      "build": "rollup -c --environment BUILD:production",
+      "zip": "npm run build && bestzip $npm_package_name.zip assets/* partials/* *.hbs package.json",
+      "test": "npx gscan .",
+      "pretest": "npm run build"
   },
   "author": {
-    "name": "Ghost Foundation",
-    "email": "hello@ghost.org",
-    "url": "https://ghost.org"
+      "name": "Aytekin Kaplan",
+      "email": "sameer@example.com",  // E-posta adresinizi buraya ekleyin
+      "url": "https://yourwebsite.com"  // Kendi web sitenizin URL'sini ekleyin
   },
   "gpm": {
-    "type": "theme",
-    "categories": [
-      "Minimal",
-      "Magazine"
-    ]
+      "type": "theme",
+      "categories": [
+          "Minimal",
+          "Magazine",
+          "Custom Carousel"
+      ]
   },
   "keywords": [
-    "ghost",
-    "theme",
-    "ghost-theme"
+      "ghost",
+      "theme",
+      "custom-theme",
+      "carousel",
+      "minimal"
   ],
   "repository": {
-    "type": "git",
-    "url": "https://github.com/TryGhost/Starter.git"
+      "type": "git",
+      "url": "https://github.com/your-repo-url.git"  // Kendi GitHub depo URL'nizi ekleyin
   },
-  "bugs": "https://github.com/TryGhost/Starter/issues",
-  "contributors": "https://github.com/TryGhost/Starter/graphs/contributors",
+  "bugs": "https://github.com/your-repo-url/issues",  // Kendi GitHub hata takip URL'nizi ekleyin
+  "contributors": [
+      "Sameer Memon <sameer@example.com>"  // Kendinizi katkıda bulunanlar olarak ekleyin
+  ],
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.4.0",
-    "bestzip": "^2.2.1",
-    "browser-sync": "^3.0.2",
-    "del": "^7.1.0",
-    "gulp": "^4.0.2",
-    "postcss": "^8.4.24",
-    "postcss-import": "^15.1.0",
-    "postcss-preset-env": "^8.0.1",
-    "rollup": "^3.29.4",
-    "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-postcss": "^4.0.2"
+      "@babel/core": "^7.21.0",
+      "@babel/preset-env": "^7.20.2",
+      "@rollup/plugin-babel": "^6.0.3",
+      "@rollup/plugin-commonjs": "^25.0.0",
+      "@rollup/plugin-node-resolve": "^15.0.1",
+      "@rollup/plugin-terser": "^0.4.0",
+      "bestzip": "^2.2.1",
+      "postcss": "^8.4.24",
+      "postcss-import": "^15.1.0",
+      "postcss-preset-env": "^8.0.1",
+      "rollup": "^3.18.0",
+      "rollup-plugin-livereload": "^2.0.5",
+      "rollup-plugin-postcss": "^4.0.2"
   },
   "browserslist": [
-    "defaults"
+      "defaults"
   ],
   "config": {
-    "card_assets": true,
-    "posts_per_page": 15,
-    "image_sizes": {
-      "xxs": {
-        "width": 30
-      },
-      "xs": {
-        "width": 100
-      },
-      "s": {
-        "width": 300
-      },
-      "m": {
-        "width": 600
-      },
-      "l": {
-        "width": 1200
-      },
-      "xl": {
-        "width": 2000
+      "card_assets": true,
+      "posts_per_page": 15,  // Gönderi başına sayfa sayısı
+      "image_sizes": {
+          "xxs": {
+              "width": 30
+          },
+          "xs": {
+              "width": 100
+          },
+          "s": {
+              "width": 300
+          },
+          "m": {
+              "width": 600
+          },
+          "l": {
+              "width": 1200
+          },
+          "xl": {
+              "width": 2000
+          }
       }
-    }
   },
   "type": "module"
 }

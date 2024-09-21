@@ -1,17 +1,40 @@
-{{! Ana sayfa görünümü }}
-<section class="carousel-section">
-    {{> "carousel"}}
-</section>
+{{!< default}}  <!-- Bu satır, varsayılan şablon olan default.hbs'yi kullandığınızı belirtir -->
+<div class="gh-page">
+    <div class="gh-container">
+        <div class="site-header">
+            <h1>My Ghost Theme</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
 
-<section class="latest-posts">
-    <h2>Latest Posts</h2>
-    <div class="post-grid">
-        {{#foreach posts limit="7"}}
-            {{> "post-card"}}
-        {{/foreach}}
+        <section class="carousel-section">
+            {{> "carousel"}} <!-- Carousel için partial eklenmesi -->
+        </section>
+
+        <div class="gh-postfeed">
+            {{#foreach posts}}
+                {{> "post-card" page=../pagination.page}} <!-- post-card partial'ını kullanarak post kartlarını göster -->
+            {{/foreach}}
+        </div>
+
+        <section class="load-more">
+            <button id="load-more">Loading More</button>
+        </section>
+
+        {{!-- Eğer JS devre dışıysa, normal sayfalandırmayı göster --}}
+        <noscript>
+            <div class="gh-pagination">
+                {{pagination}}
+            </div>
+        </noscript>
+
+        <div class="site-footer">
+            <p>&copy; 2024 My Ghost Theme. All rights reserved.</p>
+        </div>
     </div>
-</section>
-
-<section class="load-more">
-    <button id="load-more">Loading More</button>
-</section>
+</div>
