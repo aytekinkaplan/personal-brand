@@ -1,42 +1,7 @@
-<article class="gh-card {{post_class}}">
-    <a class="gh-card-link" href="{{url}}" aria-label="Read more about {{title}}">
-        {{#if feature_image}}
-            <figure class="gh-card-figure">
-                <picture class="gh-card-picture">
-                    <source 
-                        srcset="{{img_url feature_image size="m" format="avif"}} 600w,
-                                {{img_url feature_image size="l" format="avif"}} 1000w"
-                        sizes="(max-width: 1000px) 100vw, 1000px"
-                        type="image/avif"
-                    >
-                    <source 
-                        srcset="{{img_url feature_image size="m" format="webp"}} 600w,
-                                {{img_url feature_image size="l" format="webp"}} 1000w"
-                        sizes="(max-width: 1000px) 100vw, 1000px"
-                        type="image/webp"
-                    >
-                    <img
-                        srcset="{{img_url feature_image size="m"}} 600w,
-                                {{img_url feature_image size="l"}} 1000w"
-                        sizes="(max-width: 1000px) 100vw, 1000px"
-                        src="{{img_url feature_image size="m"}}"
-                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                        class="gh-card-image"
-                        loading="lazy"
-                    >
-                </picture>
-            </figure>
-        {{/if}}
-        <div class="gh-card-content">
-            {{#if primary_tag}}
-                <span class="gh-card-tag">{{primary_tag.name}}</span>
-            {{/if}}
-            <h2 class="gh-card-title">{{title}}</h2>
-            <p class="gh-card-excerpt">{{excerpt words="20"}}</p>
-            <footer class="gh-card-footer">
-                <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
-                <span class="gh-card-readmore">Read more</span>
-            </footer>
-        </div>
-    </a>
-</article>
+<div class="post-card">
+  <a href="{{url}}">
+    <img src="{{feature_image}}" alt="{{title}}" />
+    <h3>{{title}}</h3>
+    <p>{{date format="MMMM DD, YYYY"}}</p>
+  </a>
+</div>

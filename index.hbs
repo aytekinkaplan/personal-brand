@@ -1,25 +1,17 @@
-{{!< default}}
+{{! Ana sayfa görünümü }}
+<section class="carousel-section">
+    {{> "carousel"}}
+</section>
 
-<div class="site-wrapper">
-  <main id="site-main" class="site-main">
-    {{!-- Self-Discovery Carousel --}}
-    <section class="featured-posts-section" id="self-discovery">
-      <h2>Self-Discovery</h2>
-      <div class="carousel-container" data-category="self-discovery">
-        <div class="carousel">
-          {{#get "posts" filter="tag:self-discovery" limit="5" include="tags,authors"}}
-            {{#foreach posts}}
-              <div class="carousel-item">
-                {{> "post-card"}}
-              </div>
-            {{/foreach}}
-          {{/get}}
-        </div>
-        <button class="carousel-button prev" aria-label="Previous slide">←</button>
-        <button class="carousel-button next" aria-label="Next slide">→</button>
-      </div>
-    </section>
+<section class="latest-posts">
+    <h2>Latest Posts</h2>
+    <div class="post-grid">
+        {{#foreach posts limit="7"}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+</section>
 
-    {{!-- Similar structures for Mindset Mastery, Emotional Intelligence, and Work-Life Balance --}}
-  </main>
-</div>
+<section class="load-more">
+    <button id="load-more">Loading More</button>
+</section>

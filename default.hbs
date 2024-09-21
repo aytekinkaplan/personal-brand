@@ -1,24 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{meta_title}}</title>
-    <meta name="description" content="{{meta_description}}" />
-    <link rel="canonical" href="{{canonical}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "css/index.css"}}" />
-    {{ghost_head}}
+    <link rel="stylesheet" href="{{asset "css/styles.css"}}">
+    <link rel="stylesheet" href="{{asset "css/carousel.css"}}">
 </head>
 <body>
-    {{> header}}
-    <main>
+    {{> "header"}}
+    <main class="content">
         {{{body}}}
     </main>
-    {{> footer}}
-    {{ghost_foot}}
+    {{> "footer"}}
     <script src="{{asset "js/carousel.js"}}"></script>
-    <script src="{{asset "js/dark-mode.js"}}"></script>
-    <script src="{{asset "js/search.js"}}"></script>
-    <script src="{{asset "js/navigation.js"}}"></script>
 </body>
 </html>
