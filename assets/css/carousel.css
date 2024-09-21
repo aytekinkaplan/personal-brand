@@ -1,29 +1,32 @@
+/* Container settings */
 .carousel-container {
   position: relative;
-  max-width: 80%;
+  max-width: 100%;
   overflow: hidden;
   margin: 0 auto;
-  max-height: 600px; /* Maksimum yüksekliği sınırla */
+  margin-bottom: 40px; /* Added margin for space between sliders */
 }
 
 .carousel {
   display: flex;
   transition: transform 0.3s ease-in-out;
+  will-change: transform;
 }
 
 .carousel-item {
-  flex: 0 0 100%; /* Tam ekran genişliği */
-  max-width: 100%; /* Sabit genişlik yerine tam genişlik kullan */
+  flex: 0 0 300px; /* Fixed width */
+  max-width: 300px;
+  margin: 0 10px; /* Adjust spacing */
   display: flex;
-  justify-content: center; /* İçeriği merkezle */
-  align-items: center; /* İçeriği dikey olarak ortala */
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-item img {
-  width: auto; /* Genişliği otomatik ayarla */
-  max-height: 600px; /* Maksimum yükseklik belirle */
-  object-fit: cover; /* Görseli kapsayacak şekilde ayarla */
-  border-radius: 10px; /* Kenarları yuvarlak */
+  width: 100%;
+  height: 400px; /* Adjust height for consistency */
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .carousel-button {
@@ -53,10 +56,22 @@
 
 @media (max-width: 768px) {
   .carousel-item {
-    flex: 0 0 100%; /* Mobil cihazlarda genişlik ayarı */
+    flex: 0 0 200px;
+    max-width: 200px;
   }
 
   .carousel-item img {
-    height: auto; /* Yükseklik otomatik ayarla */
+    height: 200px;
   }
+}
+
+/* Additional styling for section headers */
+.featured-posts-section {
+  margin: 40px 0;
+}
+
+.featured-posts-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding-left: 15px; /* Align with carousel items */
 }

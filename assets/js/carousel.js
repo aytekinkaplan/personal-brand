@@ -3,20 +3,17 @@ class Carousel {
     this.carousel = element;
     this.items = this.carousel.querySelectorAll(".carousel-item");
     this.options = {
-      itemWidth: 300,
-      autoPlay: false,
-      autoPlayInterval: 5000,
-      infinite: true,
-      ...options,
+      itemWidth: options.itemWidth || 300,
+      autoPlay: options.autoPlay || false,
+      autoPlayInterval: options.autoPlayInterval || 5000,
+      infinite: options.infinite || true,
     };
 
     this.currentIndex = 0;
     this.itemsPerSlide = Math.floor(
       this.carousel.offsetWidth / this.options.itemWidth
     );
-    this.totalSlides = this.options.infinite
-      ? this.items.length
-      : this.items.length - this.itemsPerSlide + 1;
+    this.totalSlides = this.items.length;
 
     this.init();
   }
@@ -27,15 +24,15 @@ class Carousel {
     if (this.options.autoPlay) {
       this.startAutoPlay();
     }
-    this.updateButtonStates();
+    this.updateCarousel();
   }
 
   createControls() {
     this.prevButton =
-      this.carousel.querySelector(".carousel-button.prev") ||
+      this.carousel.parentNode.querySelector(".carousel-button.prev") ||
       this.createButton("prev");
     this.nextButton =
-      this.carousel.querySelector(".carousel-button.next") ||
+      this.carousel.parentNode.querySelector(".carousel-button.next") ||
       this.createButton("next");
   }
 
@@ -51,8 +48,10 @@ class Carousel {
     this.nextButton.addEventListener("click", () => this.move(1));
     this.prevButton.addEventListener("click", () => this.move(-1));
 
-    this.carousel.addEventListener("mouseover", () => this.stopAutoPlay());
-    this.carousel.addEventListener("mouseout", () => this.startAutoPlay());
+    if (this.options.autoPlay) {
+      this.carousel.addEventListener("mouseover", () => this.stopAutoPlay());
+      this.carousel.addEventListener("mouseout", () => this.startAutoPlay());
+    }
 
     window.addEventListener(
       "resize",
@@ -61,13 +60,23 @@ class Carousel {
   }
 
   move(direction) {
-    this.currentIndex =
-      (this.currentIndex + direction + this.totalSlides) % this.totalSlides;
+    if (this.options.infinite) {
+      this.currentIndex =
+        (this.currentIndex + direction + this.totalSlides) % this.totalSlides;
+    } else {
+      this.currentIndex = Math.max(
+        0,
+        Math.min(
+          this.currentIndex + direction,
+          this.totalSlides - this.itemsPerSlide
+        )
+      );
+    }
     this.updateCarousel();
   }
 
   updateCarousel() {
-    const translateX = -this.currentIndex * this.options.itemWidth;
+    const translateX = -this.currentIndex * (this.options.itemWidth + 20); // Adjust for padding/margin
     this.carousel.style.transform = `translateX(${translateX}px)`;
     this.updateButtonStates();
   }
@@ -75,30 +84,27 @@ class Carousel {
   updateButtonStates() {
     if (!this.options.infinite) {
       this.prevButton.disabled = this.currentIndex === 0;
-      this.nextButton.disabled = this.currentIndex === this.totalSlides - 1;
+      this.nextButton.disabled =
+        this.currentIndex >= this.totalSlides - this.itemsPerSlide;
     }
   }
 
   handleResize() {
     this.itemsPerSlide = Math.floor(
-      this.carousel.offsetWidth / this.options.itemWidth
+      this.carousel.offsetWidth / (this.options.itemWidth + 20) // Adjust for item margin
     );
-    this.totalSlides = this.options.infinite
-      ? this.items.length
-      : this.items.length - this.itemsPerSlide + 1;
-    this.currentIndex = Math.min(this.currentIndex, this.totalSlides - 1);
     this.updateCarousel();
   }
 
   startAutoPlay() {
-    this.autoPlayInterval = setInterval(
+    this.autoPlayIntervalId = setInterval(
       () => this.move(1),
       this.options.autoPlayInterval
     );
   }
 
   stopAutoPlay() {
-    clearInterval(this.autoPlayInterval);
+    clearInterval(this.autoPlayIntervalId);
   }
 
   debounce(func, wait) {
@@ -112,12 +118,24 @@ class Carousel {
 
 document.addEventListener("DOMContentLoaded", function () {
   const carouselElements = document.querySelectorAll(".carousel-container");
+
   carouselElements.forEach((element) => {
-    new Carousel(element.querySelector(".carousel"), {
+    const carouselInstance = new Carousel(element.querySelector(".carousel"), {
       itemWidth: 300,
       autoPlay: true,
       autoPlayInterval: 5000,
       infinite: true,
     });
+
+    // Bind buttons for each carousel independently
+    const prevButton = element.querySelector(".carousel-button.prev");
+    const nextButton = element.querySelector(".carousel-button.next");
+
+    if (prevButton) {
+      prevButton.addEventListener("click", () => carouselInstance.move(-1));
+    }
+    if (nextButton) {
+      nextButton.addEventListener("click", () => carouselInstance.move(1));
+    }
   });
 });
