@@ -50,6 +50,10 @@ class Carousel {
   bindEvents() {
     this.nextButton.addEventListener("click", () => this.move(1));
     this.prevButton.addEventListener("click", () => this.move(-1));
+
+    this.carousel.addEventListener("mouseover", () => this.stopAutoPlay());
+    this.carousel.addEventListener("mouseout", () => this.startAutoPlay());
+
     window.addEventListener(
       "resize",
       this.debounce(() => this.handleResize(), 250)
