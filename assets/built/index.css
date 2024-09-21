@@ -177,6 +177,18 @@ h1 {
   color: #777;
   font-size: 1.2rem;
 }
+/* Ana sayfa resimleri için boyutlandırma */
+.gh-feature-image img,
+.post-card img,
+.carousel-item img {
+    max-width: 100%; /* Konteynırın genişliğini aşmasını engeller */
+    max-height: 300px; /* Maksimum yükseklik 300px olacak şekilde ayarlar */
+    width: auto;
+    height: auto;
+    object-fit: cover; /* Resmin konteynırın içine sığması için */
+    border-radius: 5px; /* Köşeleri yuvarlatmak için */
+}
+
 
 /* Responsive Tasarım */
 @media (max-width: 768px) {

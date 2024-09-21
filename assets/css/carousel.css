@@ -44,3 +44,18 @@
   height: auto;
   object-fit: cover; /* Resimlerin düzgün kesilmesini sağlar */
 }
+/* Carousel resimleri için boyutlandırma */
+.carousel-item img {
+  width: 100%; /* Konteynırın tamamını kaplaması için */
+  height: 200px; /* Maksimum yükseklik 200px */
+  object-fit: cover; /* Resmi kırpmak yerine konteynırın içine sığdır */
+  border-radius: 5px;
+}
+
+/* Post kartları için resim boyutlandırma */
+.post-card img {
+  width: 100%; /* Resimlerin kartın tamamını kaplaması için */
+  height: 180px; /* Maksimum yükseklik */
+  object-fit: cover; /* Resmin konteynırın içine sığması için */
+  border-radius: 5px;
+}
