@@ -1,0 +1,195 @@
+/* Köksel Değişkenler */
+:root {
+  --color-primary: var(--ghost-accent-color, #3eb0ef); /* Tema ana renginizi buradan ayarlayın */
+  --color-base: #131313;
+  --color-border: #ddd;
+  --color-bg: #f5f5f5;
+  --color-success: #80b912;
+  --color-error: #f05230;
+  --font-sans-serif: Arial, Helvetica, sans-serif; /* Projenize uygun yazı tiplerini ekleyin */
+  --font-serif: Georgia, Times, serif;
+  --font-mono: Menlo, Courier, monospace;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-bold: 700;
+  --height: 4rem;
+  --margin: 2rem;
+  --radius: 0.5rem;
+  --xlarge: 1680px;
+  --large: 1280px;
+  --medium: 980px;
+  --small: 740px;
+  --xsmall: 480px;
+}
+
+/* Evrensel Stiller ve Varsayılan Ayarlar */
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* Temel font boyutunu % bazında ayarlayın */
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fff;
+  color: #464646;
+  font-family: var(--font-sans-serif);
+  font-size: 1.5rem;
+  line-height: 1.6em;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-bold);
+  margin: 0;
+  line-height: 1.15em;
+}
+
+h1 {
+  font-size: 4rem;
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 500px) {
+  h1 {
+      font-size: 3rem;
+  }
+}
+
+/* Ghost Temasına Özgü Sınıflar ve Stiller */
+.gh-input, .gh-textarea {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 0.6em;
+  border-radius: var(--radius);
+  width: 100%;
+}
+
+.gh-input:focus {
+  border-color: var(--color-primary);
+}
+
+.gh-button {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.gh-button:hover {
+  background-color: #0056b3;
+}
+
+.gh-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gh-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel (Slider) Stilleri */
+.carousel {
+  display: flex;
+  overflow: hidden;
+  gap: 10px;
+}
+
+.carousel-item {
+  min-width: 200px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.carousel-prev, .carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+/* Post Kartları İçin Stiller */
+.post-card {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  padding: 15px;
+  border-radius: var(--radius);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.post-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.post-card h3 {
+  font-size: 1.8rem;
+  margin: 10px 0;
+  color: var(--color-base);
+}
+
+.post-card p {
+  color: #777;
+  font-size: 1.2rem;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .gh-container {
+      padding: 10px;
+  }
+
+  .gh-button {
+      padding: 8px 16px;
+      font-size: 1.2rem;
+  }
+
+  .post-card {
+      padding: 10px;
+  }
+}

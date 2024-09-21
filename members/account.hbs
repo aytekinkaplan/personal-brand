@@ -1,0 +1,35 @@
+{{!< ../default}}  <!-- Varsayılan şablonu kullandığımızı belirtir -->
+
+<div class="gh-page">
+    <div class="gh-container">
+
+    {{#if @member.paid}}
+
+        {{!-- Ücretli abone olarak giriş yapmış üye: Hesap bilgilerini göster --}}
+        <div class="account-box">
+            <h2 class="account-box-title">Tebrikler, aboneliğiniz aktif!</h2>
+            <p>Merhaba! <strong>{{@member.email}}</strong> olarak {{@site.title}} aboneliğiniz var ve tüm içeriklere erişim sağlayabilirsiniz. Yardıma ihtiyacınız olursa bizimle iletişime geçebilirsiniz.</p>
+        </div>
+
+    {{else if @member}}
+
+        {{!-- Ücretsiz üyelikle giriş yapmış üye: Abonelik yönlendirmesi --}}
+        <div class="account-box">
+            <h2 class="account-box-title">Şu anda aboneliğiniz yok</h2>
+            <p>Merhaba! <strong>{{@member.email}}</strong> adresiyle {{@site.title}}'dan ücretsiz güncellemeler alıyorsunuz, ancak tüm içeriklere erişim sağlayabilmek için ücretli abone değilsiniz.</p>
+            <div class="authbox-signup">
+                <a class="button primary" href="/signup/">
+                    <span class="button-content">Şimdi abone ol</span>
+                </a>
+            </div>
+        </div>
+
+    {{else}}
+
+        {{!-- Üye giriş yapmamış: Giriş sayfasına yönlendir --}}
+        <script>window.location = '{{@site.url}}/signin/';</script>
+
+    {{/if}}
+
+    </div>
+</div>

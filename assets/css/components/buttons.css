@@ -1,0 +1,69 @@
+/* Butonlar
+/* ---------------------------------------------------------- */
+
+.gh-button {
+  display: inline-block;
+  min-width: 75px;
+  height: var(--height); /* Değişkeni temanızın genel stiline uygun hale getirdik */
+  padding: 0 2rem;
+  border: 0;
+  border-radius: var(--radius); /* Kenar yuvarlama değeri değişkenle ayarlandı */
+  cursor: pointer;
+  font-family: var(--font-sans-serif);
+  font-size: 1.4rem;
+  font-weight: var(--font-normal);
+  line-height: var(--height);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  appearance: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Daha yumuşak geçişler için transition */
+}
+
+.gh-button.gh-button-fit {
+  width: 100%; /* Butonun tam genişlik almasını sağlar */
+}
+
+.gh-button.gh-button-small {
+  height: calc(var(--height) * 0.9);
+  line-height: calc(var(--height) * 0.9);
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
+}
+
+.gh-button.gh-button-large {
+  height: calc(var(--height) * 1.2);
+  line-height: calc(var(--height) * 1.2);
+  padding: 0 2.5rem;
+  font-size: 1.7rem;
+}
+
+.gh-button.gh-button-disabled,
+.gh-button:disabled {
+  pointer-events: none; /* Tıklanamaz hale getirme */
+  opacity: 0.4; /* Butonun devre dışı olduğunda görünümünü ayarlar */
+}
+
+.gh-button {
+  color: inherit; /* Varsayılan metin rengi */
+  background-color: transparent; /* Arka plan rengini şeffaf yaptık */
+  border: 2px solid currentColor; /* Kenarlık rengi, mevcut metin rengiyle uyumlu */
+  box-shadow: inset 0 0 0 2px currentColor; /* Kenarlık gölgesi */
+}
+
+.gh-button:hover {
+  text-decoration: none;
+  color: var(--color-primary) !important;
+  box-shadow: inset 0 0 0 2px var(--color-primary); /* Hover durumunda kenarlık rengini değiştirir */
+  transition: 0.2s ease;
+}
+
+.gh-button.gh-button-primary {
+  color: #fff !important;
+  background-color: var(--color-primary); /* Temanızın ana rengi */
+  box-shadow: none;
+}
+
+.gh-button.gh-button-primary:hover {
+  background-color: #0056b3; /* Hover durumunda bir ton daha koyu hale getirildi */
+}
