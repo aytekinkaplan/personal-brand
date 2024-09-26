@@ -3,11 +3,7 @@
     <div class="gh-container">
 
         <div class="gh-postfeed">
-        {{#foreach posts}}
-
-            {{> "card" page=../pagination.page }} {{!-- partials/card.hbs --}}
-
-        {{/foreach}}
+            {{> "slider" }}  {{!-- partials/slider.hbs --}}
         </div>
 
         {{!-- If JS isn't enabled, fallback to standard pagination --}}

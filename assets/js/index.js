@@ -1,4 +1,4 @@
-// JavaScript files are compiled and minified during the build process to the assets/built folder. See available scripts in the package.json file.
+// index.js
 
 // Import CSS
 import "../css/index.css";
@@ -6,7 +6,9 @@ import "../css/index.css";
 // Import JS
 import menuOpen from "./menuOpen";
 import infiniteScroll from "./infiniteScroll";
+import { initSlider } from "./slider"; // Slider fonksiyonunu import ettik
 
-// Call the menu and infinite scroll functions
+// Call the menu, infinite scroll, and slider functions
 menuOpen();
 infiniteScroll();
+initSlider(); // Slider fonksiyonunu başlat
