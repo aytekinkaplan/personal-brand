@@ -2,6 +2,11 @@
     width: 1.5rem;
     height: 1.5rem;
 }
+.arrow:hover {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+}
 
 .avatar {
     width: 3rem;
