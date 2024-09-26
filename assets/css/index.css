@@ -110,14 +110,18 @@ html,
 }
 
 .gh-card-image {
-    width: 100%;
-    max-height: 700px;
+    border-radius: var(--border-radius-containers);
+    bottom: 0;
+    -webkit-mask-image: "-webkit-radial-gradient(white, black)";
+    max-height: 573px;
+    max-width: 480px;
+    -o-object-fit: cover;
     object-fit: cover;
-    margin-bottom: 3.6vmin;
-    aspect-ratio: 1 / 1;
-    border-radius: 12px; /* Daha yumuşak köşeler */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.08); /* Gölgeleri yumuşat ve daha doğal yap */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transform ve gölge geçişini ekle */
+    -o-object-position: center;
+    object-position: center;
+    right: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.25, 1) 0ms;
+    will-change: transform;
 }
 
 .gh-card-image:hover {

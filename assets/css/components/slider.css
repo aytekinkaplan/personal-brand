@@ -4,8 +4,8 @@
     align-items: center;
     position: relative;
     overflow: hidden;
-    max-width: 90%; /* Daha iyi görünmesi için kapsayıcı genişliğini biraz daraltalım */
-    margin: 0 auto; /* Ortalamak için */
+    max-width: 100%; /* Kapsayıcı genişliği yüzde 100 yapıldı */
+    margin: 0 auto;
     padding: var(--margin) 0;
 }
 
@@ -21,20 +21,18 @@
 }
 
 .gh-slider-item {
-    flex: 0 0 calc((100% / 3) - 40px); /* Her slaytın genişliğini ayarladık ve kenar boşluğunu hesaba kattık */
+    flex: 0 0 calc((100% / 3) - 30px); /* Varsayılan olarak geniş ekranlarda üç eleman görünsün */
     box-sizing: border-box;
-    padding: 0 10px; /* Sağ ve sol boşlukları biraz azalttık */
+    padding: 0 10px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
-    border-radius: var(--radius); /* Border radius'u değişkene bağladık */
+    border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background: var(
-        --color-background-main
-    ); /* Arka plan rengini değişkenden aldık */
-    margin: 10px; /* Slaytların arasındaki boşlukları ayarladık */
+    background: var(--color-background-main);
+    margin: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -42,18 +40,18 @@
     width: 100%;
     height: auto;
     overflow: hidden;
-    border-radius: var(--radius) var(--radius) 0 0; /* Border radius'u değişkene bağladık */
+    border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .gh-post-image {
     width: 100%;
-    height: 250px; /* Görselin yüksekliğini artırdık */
+    height: 250px;
     object-fit: cover;
-    border-radius: var(--radius) var(--radius) 0 0; /* Border radius'u değişkene bağladık */
+    border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .gh-card-content {
-    padding: var(--margin) 1rem; /* İçeriği biraz daha ferahlatmak için padding artırdık */
+    padding: var(--margin) 1rem;
     width: 100%;
 }
 
@@ -61,77 +59,131 @@
     display: inline-block;
     background-color: var(--color-bg);
     color: var(--color-base);
-    font-size: 0.9rem; /* Kategori yazı boyutunu artırdık */
+    font-size: 0.9rem;
     padding: 4px 8px;
-    border-radius: var(--radius); /* Border radius'u değişkene bağladık */
+    border-radius: var(--radius);
     margin-bottom: 8px;
 }
 
 .gh-post-title {
-    font-size: 1.2rem; /* Başlık yazı boyutunu artırdık */
+    font-size: 1.2rem;
     margin: 0 0 5px 0;
-    font-weight: var(--font-bold); /* Font ağırlığını değişkenden aldık */
+    font-weight: var(--font-bold);
     line-height: 1.4;
 }
 
 .gh-post-date {
-    font-size: 0.9rem; /* Tarih yazı boyutunu artırdık */
-    color: var(--color-border); /* Font rengini değişkenden aldık */
+    font-size: 0.9rem;
+    color: var(--color-border);
     margin-top: 5px;
 }
 
 /* Slider button (prev ve next) genel stili */
 .gh-slider-btn {
-    background-color: rgba(
-        255,
-        255,
-        255,
-        0.8
-    ); /* Hafif şeffaf beyaz arka plan */
-    border: 2px solid var(--color-border); /* Hafif gri bir çerçeve */
-    color: var(--color-base); /* Buton simgesi için koyu renk */
-    padding: 15px; /* Buton boyutunu büyüttük */
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid var(--color-border);
+    color: var(--color-base);
+    padding: 15px;
     cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
     transition: background-color 0.3s, box-shadow 0.3s;
-    border-radius: 50%; /* Yuvarlak buton */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge ekledik */
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .gh-slider-btn:hover {
-    background-color: var(
-        --color-bg
-    ); /* Üzerine gelindiğinde arka plan rengini değişkenden aldık */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Hover durumunda gölgeyi artır */
+    background-color: var(--color-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .prev-btn {
-    left: -20px; /* Ok butonlarını görünür yapmak için pozisyonu içeride */
+    left: 10px;
 }
 
 .next-btn {
-    right: -20px;
+    right: 10px;
 }
 
 .gh-slider-item:hover {
-    transform: scale(1.05); /* Üzerine gelindiğinde biraz büyüsün */
+    transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Mobil ekranlar için slider ve içerik düzenlemeleri */
-@media (max-width: var(--medium)) {
-    .gh-slider-item {
-        flex: 0 0 90%; /* Küçük ekranlarda slider tek bir postu göstersin */
-        max-width: 90%;
-    }
+/* Responsive Media Queries */
 
-    .gh-slider-btn {
-        display: none; /* Mobilde ok butonlarını gizleyelim */
+/* Büyük ekranlar (1200px ve üzeri) */
+@media (min-width: 1200px) {
+    .gh-slider-item {
+        flex: 0 0 calc((100% / 3) - 30px); /* Üç eleman görünür */
+    }
+}
+
+/* Orta ekranlar (980px - 1199px) */
+@media (max-width: 1199px) and (min-width: 980px) {
+    .gh-slider-item {
+        flex: 0 0 calc((100% / 2) - 20px); /* İki eleman görünür */
+    }
+    .gh-post-image {
+        height: 200px; /* Görsel yüksekliği azaltıldı */
+    }
+}
+
+/* Küçük ekranlar (740px - 979px) */
+@media (max-width: 979px) and (min-width: 740px) {
+    .gh-slider-item {
+        flex: 0 0 100%; /* Tek bir eleman görünür */
+        max-width: 100%;
+    }
+    .prev-btn,
+    .next-btn {
+        display: none; /* Butonları gizle */
+    }
+    .gh-post-image {
+        height: 180px;
+    }
+}
+
+/* Daha küçük ekranlar (480px - 739px) */
+@media (max-width: 739px) {
+    .gh-slider-item {
+        flex: 0 0 100%; /* Tek bir eleman görünür */
+        max-width: 100%;
+    }
+    .prev-btn,
+    .next-btn {
+        display: none; /* Butonları gizle */
+    }
+    .gh-post-title {
+        font-size: 1rem; /* Başlık boyutunu küçült */
+    }
+    .gh-post-image {
+        height: 150px; /* Görsel yüksekliğini küçült */
+    }
+    .gh-card-content {
+        padding: 10px; /* İçerik padding'ini azalt */
+    }
+}
+
+/* En küçük ekranlar (480px ve altı) */
+@media (max-width: 480px) {
+    .gh-slider-item {
+        flex: 0 0 100%; /* Tam genişlikte tek bir eleman */
+        max-width: 100%;
+    }
+    .prev-btn,
+    .next-btn {
+        display: none; /* Butonları gizle */
+    }
+    .gh-post-title {
+        font-size: 0.9rem; /* Başlık boyutunu daha da küçült */
+    }
+    .gh-post-date {
+        font-size: 0.8rem;
     }
 }
