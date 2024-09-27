@@ -11,6 +11,35 @@
     --color-success: #80b912;
     --color-error: #f05230;
     --color-borders: #e7e7e7;
+    --color-background-main: #fff;
+    --color-text-main: #1d1d1f;
+    --accent-color: var(--ghost-accent-color, var(--color-text-main));
+    --color-buttons-main-text: #fdfdfd;
+    --color-buttons-secondary: #ededed;
+    --color-buttons-secondary-text: #1d1d1f;
+    --color-buttons-secondary-hover: #ddd;
+    --color-background-elements-main: #f1f1f2;
+    --color-background-elements-main-hover: #ededed;
+    --color-borders: #ddd;
+    --color-nav-link-hover: #8e8e8f;
+    --color-dark-mode-slider: #fdfdfd;
+    --color-text-light: #fff;
+    --color-text-lighter: #777779;
+    --color-text-tags: #616162;
+    --color-text-meta: #a5a5a5;
+    --color-text-post: #343435;
+    --color-text-input: #1d1d1f;
+    --color-text-tier-desc: #777779;
+    --color-card-title-hover: #616162;
+    --color-link: #8e8e8f;
+    --color-link-hover: #616162;
+    --color-background-text-blocks: #f6f6f6;
+    --color-bookmark-border: #ededed;
+    --color-footer-meta-separator: #bbbbbc;
+    --color-audio-thumbnail-placeholder: #e4e4e4;
+    --color-background-block-hover: #f4f4f4;
+    --color-accent: var(--ghost-accent-color, #12c91e);
+    --form-input-focus-color: #b7b7b7;
 
     /* Fonts */
     --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -22,6 +51,67 @@
     --font-normal: 400;
     --font-bold: 700;
     --font-heavy: 800;
+    --font-family-headings: -apple-system, BlinkMacSystemFont, avenir next,
+        avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto,
+        noto, arial, sans-serif;
+    --font-family-body: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+        segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto,
+        arial, sans-serif;
+    --font-family-buttons: -apple-system, BlinkMacSystemFont, avenir next,
+        avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto,
+        noto, arial, sans-serif;
+    --font-family-navigation: -apple-system, BlinkMacSystemFont, avenir next,
+        avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto,
+        noto, arial, sans-serif;
+    --font-family-card-headings: -apple-system, BlinkMacSystemFont, avenir next,
+        avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto,
+        noto, arial, sans-serif;
+    --font-weight-headings: 700;
+    --font-weight-navigation: 500;
+    --font-weight-card-heading: 600;
+    --font-weight-tags: 500;
+    --font-weight-footer-subtext: 500;
+    --font-weight-toggle-heading: 600;
+    --font-about-primary-line-height: 112%;
+    --font-about-secondary-line-height: 120%;
+    --font-latest-line-height: 116%;
+    --font-subscribe-cta-line-height: 116%;
+    --font-subscribe-sub-cta-line-height: 125%;
+    --font-card-heading-line-height: 116%;
+    --font-latest-card-heading-line-height: 120%;
+    --font-post-text-line-height: 145%;
+    --font-size-site-title: 24px;
+    --font-size-about-primary: 64px;
+    --font-size-about-secondary: 24px;
+    --font-size-navigation: 16px;
+    --font-size-main-buttons: 15px;
+    --font-size-subscribe-button: 16px;
+    --font-size-topic-grid-name: 32px;
+    --font-size-topic-grid-link: 15px;
+    --font-size-card-heading: 24px;
+    --font-size-card-heading-large: 28px;
+    --font-size-tags: 16px;
+    --font-size-tags--small: 15px;
+    --font-size-latest-heading: 56px;
+    --font-size-smallgrid-card-heading: 22px;
+    --font-size-subscribe-cta: 40px;
+    --font-size-article-headings: 56px;
+    --font-size-article-headings-wide: 64px;
+    --font-size-post-text: 20px;
+    --font-size-tags--laptop: 14px;
+    --font-size-tags--small--laptop: 14px;
+    --font-size-subscribe-button--laptop: 15px;
+    --letter-spacing-main: normal;
+    --letter-spacing-site-title: normal;
+    --letter-spacing-navigation: normal;
+    --letter-spacing-headings: normal;
+    --letter-spacing-about-secondary: normal;
+    --letter-spacing-card-titles: normal;
+    --letter-spacing-buttons: normal;
+    --letter-spacing-tags: normal;
+    --text-transfrom-navigation: normal;
+    --text-transform-tags: normal;
+    --text-transform-buttons: none;
 
     /* Breakpoints */
     --xlarge: 1680px;
@@ -34,4 +124,12 @@
     --height: 4rem;
     --margin: 2rem;
     --radius: 0.5rem;
+
+    /* Sizes */
+    --border-radius: 4px;
+    --border-radius-buttons: 100px;
+    --border-radius-containers: 8px;
+    --border-radius-tags: 4px;
+    --padding-buttons: 12px 22px;
+    --padding-subscribe-button: 20px 28px;
 }

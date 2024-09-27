@@ -96,6 +96,7 @@ html,
     margin: 8vmin auto 0;
 } */
 
+/* Container for the card */
 .gh-card-link {
     display: flex;
     flex-direction: column;
@@ -103,34 +104,65 @@ html,
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 1rem; /* Added padding for better spacing */
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease-out;
-    gap: 3vmin;
+    border-radius: var(
+        --border-radius-containers,
+        8px
+    ); /* Ensures the container is rounded */
+    background-color: var(
+        --card-bg-color,
+        #fff
+    ); /* Use CSS variables for easy theming */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    gap: 1rem; /* Use consistent gap value */
 }
 
+.gh-card-link:hover {
+    transform: translateY(-4px); /* Lifts the card slightly on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* More prominent shadow on hover */
+}
+
+/* Image inside the card */
 .gh-card-image {
-    border-radius: var(--border-radius-containers);
-    bottom: 0;
-    -webkit-mask-image: "-webkit-radial-gradient(white, black)";
-    max-height: 573px;
-    max-width: 480px;
-    -o-object-fit: cover;
+    border-radius: inherit; /* Ensure the image has the same border-radius */
+    overflow: hidden; /* Hide overflow to make rounded corners effective */
+    max-width: 100%; /* Ensures the image does not exceed container size */
+    aspect-ratio: 16 / 9; /* Consistent aspect ratio for all images */
     object-fit: cover;
-    -o-object-position: center;
     object-position: center;
-    right: 0;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.25, 1) 0ms;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.25, 1),
+        box-shadow 0.3s ease; /* Combined transitions */
     will-change: transform;
 }
 
 .gh-card-image:hover {
-    transform: scale(1.03); /* Hover anında hafif büyüme */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Hover anında daha belirgin gölge */
+    transform: scale(
+        1.05
+    ); /* Slightly larger scaling for a more modern effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
 }
 
 .gh-card-image:first-of-type {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio for the first image */
+    border-radius: var(
+        --border-radius-containers,
+        8px
+    ); /* Use CSS variable for border-radius */
+}
+
+/* Responsive design: Ensuring the card looks good on all screen sizes */
+@media (max-width: 768px) {
+    .gh-card-link {
+        padding: 0.5rem; /* Reduce padding on smaller screens */
+        gap: 0.5rem; /* Adjust gap for better spacing */
+    }
+
+    .gh-card-image {
+        max-height: 300px; /* Limit image height on smaller screens */
+    }
 }
 
 .gh-card-meta {
