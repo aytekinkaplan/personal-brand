@@ -1,115 +1,134 @@
 export function initSliders() {
-    // Select all sliders on the page
-    const sliders = document.querySelectorAll(".gh-slider");
+    document.addEventListener("DOMContentLoaded", () => {
+        // Select all sliders on the page
+        const sliders = document.querySelectorAll(".gh-slider");
 
-    sliders.forEach((slider, index) => {
-        // Get the navigation buttons for the current slider
-        const prevBtn = slider.parentElement.querySelector(".prev-btn");
-        const nextBtn = slider.parentElement.querySelector(".next-btn");
-        const sliderItems = Array.from(
-            slider.querySelectorAll(".gh-slider-item")
-        );
+        if (sliders.length === 0) {
+            console.error("No sliders found on the page.");
+            return;
+        }
 
-        // Exit if any necessary element is missing
-        if (!slider || !prevBtn || !nextBtn || sliderItems.length === 0) return;
+        sliders.forEach((slider) => {
+            // Get the navigation buttons
+            const prevBtn = slider
+                .closest(".gh-postfeed-slider")
+                .querySelector(".prev-btn");
+            const nextBtn = slider
+                .closest(".gh-postfeed-slider")
+                .querySelector(".next-btn");
+            const sliderItems = Array.from(
+                slider.querySelectorAll(".gh-slider-item")
+            );
 
-        // Configuration for the slider
-        const itemsVisible = 3;
-        const itemWidth = 100 / itemsVisible;
-        const totalItems = sliderItems.length;
-        const maxIndex = totalItems - itemsVisible;
-        let currentIndex = 0;
-        let autoSlideInterval;
+            if (!slider || sliderItems.length === 0) return;
 
-        // Sort slider items by date (newest first)
-        sliderItems.sort(
-            (a, b) => new Date(b.dataset.date) - new Date(a.dataset.date)
-        );
+            // Configuration
+            let itemsVisible = calculateVisibleItems(); // Calculate visible items based on screen width
+            let itemWidth = 100 / itemsVisible;
+            const totalItems = sliderItems.length;
+            let currentIndex = 0;
+            let autoSlideInterval;
 
-        // Clear and append sorted items
-        slider.innerHTML = "";
-        sliderItems.forEach((item) => {
-            item.style.width = `${itemWidth}%`; // Set item width based on visibility
-            slider.appendChild(item);
-        });
+            // Ensure the latest items are displayed on page load
+            currentIndex = Math.max(0, totalItems - itemsVisible);
 
-        updateSlider();
+            // Set item width for all items
+            sliderItems.forEach((item) => {
+                item.style.width = `${itemWidth}%`;
+                slider.appendChild(item);
+            });
 
-        // Add event listeners
-        nextBtn.addEventListener("click", moveNext);
-        prevBtn.addEventListener("click", movePrev);
-        window.addEventListener("resize", updateSlider); // Update slider on window resize
-        addSwipeEvents(slider);
-        addKeyboardNavigation();
-        startAutoSlide();
-
-        function moveNext() {
-            if (currentIndex < maxIndex) currentIndex++;
             updateSlider();
-        }
 
-        function movePrev() {
-            if (currentIndex > 0) currentIndex--;
-            updateSlider();
-        }
+            // Event listeners for buttons
+            nextBtn.addEventListener("click", moveNext);
+            prevBtn.addEventListener("click", movePrev);
+            window.addEventListener("resize", handleResize); // Adjust on resize
+            addSwipeEvents(slider);
+            addKeyboardNavigation();
 
-        function updateSlider() {
-            const offset = currentIndex * itemWidth;
-            slider.style.transform = `translateX(-${offset}%)`;
-            slider.style.transition = "transform 0.6s ease-in-out";
+            function moveNext() {
+                if (currentIndex < totalItems - itemsVisible) {
+                    currentIndex++;
+                    updateSlider();
+                } else {
+                    currentIndex = 0; // Go back to the first item for infinite loop
+                    updateSlider();
+                }
+            }
 
-            // Toggle visibility of navigation buttons
-            prevBtn.style.display = currentIndex === 0 ? "none" : "flex";
-            nextBtn.style.display = currentIndex >= maxIndex ? "none" : "flex";
-        }
+            function movePrev() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                } else {
+                    currentIndex = totalItems - itemsVisible; // Go to the last item
+                    updateSlider();
+                }
+            }
 
-        function addSwipeEvents(sliderElement) {
-            let startX = 0;
-            let isDragging = false;
+            function updateSlider() {
+                const offset = currentIndex * itemWidth;
+                slider.style.transform = `translateX(-${offset}%)`;
+                slider.style.transition = "transform 0.6s ease-in-out";
 
-            sliderElement.addEventListener("touchstart", (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-                clearInterval(autoSlideInterval); // Stop auto-slide while dragging
-            });
+                // Update button visibility based on position
+                prevBtn.style.display = currentIndex === 0 ? "none" : "flex";
+                nextBtn.style.display =
+                    currentIndex >= totalItems - itemsVisible ? "none" : "flex";
+            }
 
-            sliderElement.addEventListener("touchmove", (e) => {
-                if (!isDragging) return;
-                const touchX = e.touches[0].clientX;
-                const diffX = startX - touchX;
-                const translateX =
-                    (-currentIndex * slider.clientWidth) / itemsVisible - diffX;
-                slider.style.transform = `translateX(${translateX}px)`;
-            });
-
-            sliderElement.addEventListener("touchend", (e) => {
-                isDragging = false;
-                const endX = e.changedTouches[0].clientX;
-                const threshold = 50; // Minimum swipe distance
-
-                if (startX - endX > threshold && currentIndex < maxIndex)
-                    moveNext();
-                else if (endX - startX > threshold && currentIndex > 0)
-                    movePrev();
-                else updateSlider();
-
-                startAutoSlide(); // Restart auto-slide after touch event
-            });
-        }
-
-        function addKeyboardNavigation() {
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "ArrowLeft") movePrev();
-                if (e.key === "ArrowRight") moveNext();
-            });
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                if (currentIndex >= maxIndex) currentIndex = 0;
-                else currentIndex++;
+            function handleResize() {
+                itemsVisible = calculateVisibleItems();
+                itemWidth = 100 / itemsVisible;
+                sliderItems.forEach(
+                    (item) => (item.style.width = `${itemWidth}%`)
+                );
                 updateSlider();
-            }, 5000); // Slide every 5 seconds
-        }
+            }
+
+            function calculateVisibleItems() {
+                const containerWidth = slider.clientWidth;
+                if (containerWidth >= 1200) return 3; // Show 3 items on large screens
+                if (containerWidth >= 768) return 2; // Show 2 items on medium screens
+                return 1; // Show 1 item on small screens
+            }
+
+            function addSwipeEvents(sliderElement) {
+                let startX = 0;
+                let isDragging = false;
+
+                sliderElement.addEventListener("touchstart", (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                });
+
+                sliderElement.addEventListener("touchmove", (e) => {
+                    if (!isDragging) return;
+                    const touchX = e.touches[0].clientX;
+                    const diffX = startX - touchX;
+                    const translateX =
+                        -(currentIndex * slider.clientWidth) - diffX;
+                    slider.style.transform = `translateX(${translateX}px)`;
+                });
+
+                sliderElement.addEventListener("touchend", (e) => {
+                    isDragging = false;
+                    const endX = e.changedTouches[0].clientX;
+                    const threshold = 50;
+
+                    if (startX - endX > threshold) moveNext();
+                    else if (endX - startX > threshold) movePrev();
+                    else updateSlider();
+                });
+            }
+
+            function addKeyboardNavigation() {
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "ArrowLeft") movePrev();
+                    if (e.key === "ArrowRight") moveNext();
+                });
+            }
+        });
     });
 }

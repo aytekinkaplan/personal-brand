@@ -1,306 +1,204 @@
-/*
-
-This is a development CSS file that is compiled to a minified
-production stylesheet in assets/built/screen.css using: npm run dev
-
-*/
-
-/* Lib - Local component imports
-/* ---------------------------------------------------------- */
-
-/* Base components */
-@import "vars.css";
-@import "components/global.css";
-@import "components/forms.css";
-@import "components/buttons.css";
-@import "components/icons.css";
-@import "components/slider.css";
-
-/* Ghost components */
-@import "ghost/header.css";
-@import "ghost/content.css";
-@import "ghost/readmore.css";
-@import "ghost/members.css";
-@import "ghost/errors.css";
-@import "ghost/footer.css";
-@import "ghost/badge.css";
-@import "ghost/pagination.css";
-@import "ghost/comments.css";
-
-/* Main - Your styles here! Edit below
-/* ---------------------------------------------------------- */
-
-html,
-.gh-viewport {
+/* Ana slider kapsayıcı */
+.gh-postfeed-slider {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: #ffffff;
-}
-
-.gh-main {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.gh-page {
-    padding: 0 4vmin;
-}
-
-.gh-article {
-    padding: 8vmin 0;
-}
-
-.gh-postfeed {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
-    gap: 4.8vmin 4vmin;
-    padding: 8vmin 0;
-}
-
-.gh-postfeed > *:first-child {
-    grid-column: 1 / -1;
-}
-
-.gh-container {
-    width: 100%;
-    max-width: 1200px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
     margin: 0 auto;
+    padding: var(--margin) 0;
+    background-color: var(--color-background-main);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.gh-head-actions a:not(.gh-button) {
-    display: inline-flex;
-    align-items: center;
-    margin: 0;
-    padding: 10px;
-}
-
-.gh-head-actions a svg {
-    height: 1.8rem;
-    fill: currentcolor;
-}
-
-.gh-head-actions a:first-child svg {
-    margin-left: 20px;
-}
-
-.gh-head-actions a:last-child svg {
-    height: 2rem;
-}
-
-/* Index
-/* ---------------------------------------------------------- */
-
-/* .gh-card:not(:first-child) {
-    margin: 8vmin auto 0;
-} */
-
-/* Container for the card */
-.gh-card-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.gh-slider-wrapper {
+    overflow: hidden;
     width: 100%;
-    height: 100%;
-    padding: 1rem; /* Added padding for better spacing */
-    text-decoration: none;
-    color: inherit;
-    border-radius: var(
-        --border-radius-containers,
-        8px
-    ); /* Ensures the container is rounded */
-    background-color: var(
-        --card-bg-color,
-        #fff
-    ); /* Use CSS variables for easy theming */
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-    gap: 1rem; /* Use consistent gap value */
 }
 
-.gh-card-link:hover {
-    transform: translateY(-4px); /* Lifts the card slightly on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* More prominent shadow on hover */
-}
-
-/* Image inside the card */
-.gh-card-image {
-    border-radius: inherit; /* Ensure the image has the same border-radius */
-    overflow: hidden; /* Hide overflow to make rounded corners effective */
-    max-width: 100%; /* Ensures the image does not exceed container size */
-    aspect-ratio: 16 / 9; /* Consistent aspect ratio for all images */
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.25, 1),
-        box-shadow 0.3s ease; /* Combined transitions */
+.gh-slider {
+    display: flex;
+    transition: transform 0.6s ease;
     will-change: transform;
 }
 
-.gh-card-image:hover {
-    transform: scale(
-        1.05
-    ); /* Slightly larger scaling for a more modern effect */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+.gh-slider-item {
+    flex: 0 0 calc((100% / 3) - 20px);
+    box-sizing: border-box;
+    padding: 0 10px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gh-card-image:first-of-type {
-    aspect-ratio: 16 / 9; /* Maintain aspect ratio for the first image */
-    border-radius: var(
-        --border-radius-containers,
-        8px
-    ); /* Use CSS variable for border-radius */
+.gh-card-image {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
+    transition: transform 0.4s ease-in-out;
 }
 
-/* Responsive design: Ensuring the card looks good on all screen sizes */
-@media (max-width: 768px) {
-    .gh-card-link {
-        padding: 0.5rem; /* Reduce padding on smaller screens */
-        gap: 0.5rem; /* Adjust gap for better spacing */
-    }
-
-    .gh-card-image {
-        max-height: 300px; /* Limit image height on smaller screens */
-    }
-}
-
-.gh-card-meta {
-    display: block;
-    margin: 0 0 1rem;
-    font-size: 1.4rem;
-    line-height: 1.2em;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    opacity: 0.8;
+.gh-post-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius) var(--radius) 0 0;
+    transition: transform 0.4s ease-in-out;
 }
 
 .gh-card-content {
-    max-width: 720px;
-    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
     text-align: center;
-    font-size: 1.6rem;
+    background: var(--color-bg);
+    border-radius: 0 0 var(--radius) var(--radius);
 }
 
-.gh-card-content p {
-    margin: 1.2rem 0;
-    padding: 0 3vmin;
-}
-
-.gh-card-content > strong {
+.gh-post-category {
     display: inline-block;
-    padding: 1px 0;
-    font-weight: 500;
-    box-shadow: 0 -1px 0 0 inset currentColor;
-    opacity: 0.75;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease;
 }
 
-/* Page
-/* ---------------------------------------------------------- */
-
-.gh-page-head {
-    margin: 0 auto;
-    padding: 8vmin 0 4vmin;
-    text-align: center;
-}
-
-.gh-page-image {
-    margin: 4vmin 0 0 0;
-}
-
-.gh-page-head > p {
-    max-width: 720px;
-    margin: 0.3em auto 0;
-    padding: 0 6vmin;
-    font-size: 1.3em;
-    line-height: 1.4em;
-    opacity: 0.5;
-}
-
-@media (max-width: 700px) {
-    .gh-page-head > p {
-        font-size: 1.6rem;
-    }
-}
-
-/* Post
-/* ---------------------------------------------------------- */
-
-.gh-header {
-    padding: 0 0 8vmin 0;
-    text-align: center;
-}
-
-.gh-post-meta {
-    display: block;
-    margin: 0 0 1rem;
+.gh-post-title {
     font-size: 1.4rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    opacity: 0.8;
+    margin: 0 0 5px 0;
+    font-weight: var(--font-bold);
+    line-height: 1.4;
+    color: var(--color-text-main);
 }
 
-.gh-excerpt {
-    margin: 1rem 0 0 0;
+.gh-post-date {
+    font-size: 0.9rem;
+    color: var(--color-text-meta);
+    margin-top: 5px;
 }
 
-.gh-feature-image {
-    grid-column: wide-start / wide-end;
-    width: 100%;
-    margin: 8vmin 0 0;
-}
-
-.gh-feature-image img {
-    margin-inline: auto;
-    width: 100%;
-}
-
-.gh-post-footer {
-    margin: 2rem 0;
-}
-
-/* Author Archive
-/* ---------------------------------------------------------- */
-
-.gh-author-image {
-    height: 12vmin;
-    width: 12vmin;
-    margin: 0 auto 1.5em;
-    border-radius: 100%;
-    overflow: hidden;
-    object-fit: cover;
-}
-
-.gh-author-meta {
-    margin: 2vmin 0 0 0;
-    font-size: 1.2em;
-}
-
-.gh-author-links {
+/* Slider button (prev ve next) genel stili */
+.gh-slider-btn {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 12px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.2rem;
+    border: none;
 }
 
-.gh-author-links a {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    margin: 0 0.75vmin;
+.gh-slider-btn:hover {
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.gh-author-links a + a:before {
-    display: block;
-    content: "";
-    margin: 0 1.25vmin 0 0;
-    height: 1em;
-    width: 1px;
-    background: rgba(0, 0, 0, 0.3);
-    transform: rotate(20deg);
+.prev-btn {
+    left: -20px;
 }
 
-@media (max-width: 700px) {
-    .gh-author-meta {
-        font-size: 1.6rem;
+.next-btn {
+    right: -20px;
+}
+
+.gh-slider-item:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.gh-card-image:hover img {
+    transform: scale(1.1);
+}
+
+/* Responsive Media Queries */
+
+/* Büyük ekranlar (1200px ve üzeri) */
+@media (min-width: 1200px) {
+    .gh-slider-item {
+        flex: 0 0 calc((100% / 3) - 30px);
+    }
+}
+
+/* Orta ekranlar (980px - 1199px) */
+@media (max-width: 1199px) and (min-width: 980px) {
+    .gh-slider-item {
+        flex: 0 0 calc((100% / 2) - 20px);
+    }
+    .gh-post-image {
+        height: 220px;
+    }
+}
+
+/* Küçük ekranlar (740px - 979px) */
+@media (max-width: 979px) and (min-width: 740px) {
+    .gh-slider-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .prev-btn,
+    .next-btn {
+        display: none;
+    }
+    .gh-post-image {
+        height: 200px;
+    }
+}
+
+/* Daha küçük ekranlar (480px - 739px) */
+@media (max-width: 739px) {
+    .gh-slider-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .prev-btn,
+    .next-btn {
+        display: none;
+    }
+    .gh-post-title {
+        font-size: 1rem;
+    }
+    .gh-post-image {
+        height: 180px;
+    }
+    .gh-card-content {
+        padding: 8px;
+    }
+}
+
+/* En küçük ekranlar (480px ve altı) */
+@media (max-width: 480px) {
+    .gh-slider-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .prev-btn,
+    .next-btn {
+        display: none;
+    }
+    .gh-post-title {
+        font-size: 0.9rem;
+    }
+    .gh-post-date {
+        font-size: 0.8rem;
     }
 }
