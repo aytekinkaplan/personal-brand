@@ -1,47 +1,19 @@
 {{!< default}}
 <div class="gh-page">
     <div class="gh-container">
-        {{!-- Technology category slider --}}
-        <section class="category-slider">
-            <h2 class="slider-title">Technology</h2>
-            {{#get "posts" filter="primary_tag:technology" limit="7"}}
-                {{> "slider" }}
-            {{/get}}
-        </section>
-
-        {{!-- Health category slider --}}
-        <section class="category-slider">
-            <h2 class="slider-title">Health</h2>
-            {{#get "posts" filter="primary_tag:health" limit="7"}}
-                {{> "slider" }}
-            {{/get}}
-        </section>
-
-        {{!-- Education category slider --}}
-        <section class="category-slider">
-            <h2 class="slider-title">Education</h2>
-            {{#get "posts" filter="primary_tag:education" limit="7"}}
-                {{> "slider" }}
-            {{/get}}
-        </section>
-
-
-        {{!-- Environment category slider --}}
-        <section class="category-slider">
-            <h2 class="slider-title">Environment</h2>
-            {{#get "posts" filter="primary_tag:environment" limit="7"}}
-                {{> "slider" }}
-            {{/get}}
-        </section>
-
-
-        {{!-- Fashion category slider --}}
-        <section class="category-slider">
-            <h2 class="slider-title">Fashion</h2>
-            {{#get "posts" filter="primary_tag:fashion" limit="7"}}
-                {{> "slider" }}
-            {{/get}}
-        </section>
+        {{!-- Loop through each tag to create a slider dynamically based on user input --}}
+        {{#get "tags" limit="all" include="count.posts"}}
+            {{#foreach tags}}
+                {{#if count.posts}}  <!-- Only display the slider if the tag has posts -->
+                    <section class="category-slider">
+                        <h2 class="slider-title">{{name}}</h2>
+                        {{#get "posts" filter="primary_tag:{{slug}}" limit="7"}}
+                            {{> "slider" }}
+                        {{/get}}
+                    </section>
+                {{/if}}
+            {{/foreach}}
+        {{/get}}
 
         {{!-- Fallback to standard pagination if JS is not enabled --}}
         <noscript>
